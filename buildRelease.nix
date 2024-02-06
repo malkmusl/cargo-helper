@@ -37,11 +37,15 @@ pkgs.stdenv.mkDerivation {
     cargo build --release
   '';
 
-  # Install script
   installPhase = ''
-    mkdir -p $out$installDir
-    cp target/release/cargo-helper $out$installDir
+    mkdir -p $out/bin  # Ensure the target directory exists
+    cp -v target/release/cargo-helper $out/bin/  # Copy the executable
+    # Add the export statement to modify the PATH in the user's .bashrc
+    export PATH="/nix/store/il3q6l8riizn1pijmay2m47idgdsx1y9-cargo-helper/usr/bin:$PATH"
+
   '';
+
+
 }
 
 
