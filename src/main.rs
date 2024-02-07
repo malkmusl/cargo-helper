@@ -11,6 +11,7 @@ mod rust;
 mod config;
 mod project;
 mod git;
+mod console;
 
 pub enum LICENSE {
     OpenSource,
@@ -20,8 +21,13 @@ pub enum LICENSE {
 fn main() {
     let args: Vec<String> = env::args().collect();
 
+    console::print_error("test");
+    console::print_warn("warn");
+    console::print_success("test");
+    console::print_info("info");
+
     if let Err(e) = create_config_file() {
-        println!("Error: {}", e);
+        console::print_info(&e);
     }
 
     if args.len() < 3 {
@@ -36,21 +42,21 @@ fn main() {
         "-p" => setup(args, LICENSE::Proprietary),
             
         _ => {
-            println!("Error: Unknown command. Usage: cargo-helper <new/init> <name(optional)>");
+            console::print_error("Unknown command. Usage: cargo-helper <new/init> <name(optional)>");
         }
     }
 }
 
 fn setup(args: Vec<String>, license: LICENSE){
     if args.len() < 4 {
-        println!("Error: Missing project name. Usage: cargo-helper new <name>");
+        console::print_error("Missing project name. Usage: cargo-helper new <name>");
         return;
     }
     match args[2].as_str() {
       "new" => {
         let project_name = &args[3];
         if let Err(e) = create_new_project(project_name, license) {
-            println!("Error: {}", e);
+            console::print_error(&e);
         }
       },
       "init" => {
@@ -60,14 +66,14 @@ fn setup(args: Vec<String>, license: LICENSE){
                 match get_parent_directory_name() {
                     Some(name) => name,
                     None => {
-                        println!("Error: Failed to determine project name.");
+                        console::print_error("Failed to determine project name.");
                         return;
                     }
                 }
             }
         };
         if let Err(e) = init_new_project(license) {
-            println!("Error: {}", e);
+            console::print_error(&e);
         }
       }
       _ => {

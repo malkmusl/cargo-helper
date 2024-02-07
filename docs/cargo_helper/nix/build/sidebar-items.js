@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["build_debug","build_release"]};

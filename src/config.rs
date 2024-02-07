@@ -1,16 +1,18 @@
 #![allow(deprecated)]
 use std::{env, fs, path::Path};
 
+use crate::console;
+
 pub fn get_config() -> Result<(bool, String, String), String> {
     let home_dir = match env::home_dir() {
         Some(path) => path,
-        None => return Err("Failed to get the user's home directory.".to_string()),
+        None => return Err(console::print_error("Failed to get the user's home directory.")),
     };
 
     let config_file_path = home_dir.join(".config").join("cargo-helper").join("config");
 
     if !config_file_path.exists() {
-        return Err(format!("Config file '{}' does not exist.", config_file_path.display()));
+        return Err(console::print_error(&format!("Config file '{}' does not exist.", config_file_path.display())));
     }
 
     let content = fs::read_to_string(&config_file_path)

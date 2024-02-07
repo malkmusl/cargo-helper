@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_branches_folder","create_folders","create_git_folder","create_hooks_folder","create_info_folder","create_objects_folder","create_objects_info_folder","create_objects_pack_folder","create_refs_folder"]};

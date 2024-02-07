@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["open_source_readme","proprietary_readme"]};

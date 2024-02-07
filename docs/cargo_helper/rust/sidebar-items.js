@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_project_directory","get_current_directory","get_parent_directory_name","write_file"],"mod":["cargo_file","main_file","toolchain"]};

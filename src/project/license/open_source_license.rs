@@ -100,7 +100,7 @@ Please carefully review the following Open Source License Agreement to understan
     "##,
         project_name = project_name,
         copyright_year = get_year(),
-        date = get_date(),
+        date = get_date()
     );
 
     let main_rs_path = format!("{}/LICENSE.md", src_dir);

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_build_release_nix_file"]};

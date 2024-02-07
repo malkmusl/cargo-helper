@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["LICENSE"],"fn":["main","setup"],"mod":["config","console","git","nix","project","rust"]};

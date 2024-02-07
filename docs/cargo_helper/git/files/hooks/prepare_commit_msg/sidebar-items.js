@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["generate_prepare_commit_msg"]};

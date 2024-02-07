@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_date","get_time","get_year"],"mod":["open_source_license","proprietary_license"]};
