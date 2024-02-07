@@ -2,18 +2,19 @@
 
 let
   # Define the project directory
-  projectDir = ./.;
+  projectDir = "/home/malkmusl/Development/rust/cargo-helper/";
 
   # Define the linked Rust and Cargo toolchains
-  linkedRust = /home/malkmusl/Development/rust/offload/offload-cmd/.rustup;
-  linkedCargo = /home/malkmusl/Development/rust/offload/offload-cmd/.cargo;
+  linkedRust = "${projectDir}.rustup";
+  linkedCargo = "${projectDir}.cargo";
 
   # Define the destination directory for the installed program
-  installDir = "/bin";  # Installing to a different directory within the Nix store
+  installDir = "/debug";  # Installing to a different directory within the Nix store
+  executablePath = "${installDir}/cargo-helper-debug";
 in
 
 pkgs.stdenv.mkDerivation {
-  name = "nvidia-offload-debug";
+  name = "cargo-helper-debug";
 
   # Specify build inputs
   buildInputs = [
@@ -22,7 +23,7 @@ pkgs.stdenv.mkDerivation {
   ];
 
   # Set the project directory as the build directory
-  src = projectDir;
+  src = ./.;
 
   # Set environment variables to use the linked toolchains
   shellHook = ''
@@ -39,6 +40,6 @@ pkgs.stdenv.mkDerivation {
   # Install script
   installPhase = ''
     mkdir -p $out${installDir}
-    cp target/release/offload-cmd $out${installDir}
+    cp target/debug/cargo-helper $out${installDir}
   '';
 }

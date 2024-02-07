@@ -9,7 +9,7 @@ let
   linkedCargo = "${projectDir}.cargo";
 
   # Define the destination directory for the installed program
-  installDir = "/bin";  # Installing to a different directory within the Nix store
+  installDir = "/release";  # Installing to a different directory within the Nix store
   executablePath = "${installDir}/cargo-helper";
 in
 
@@ -38,14 +38,12 @@ pkgs.stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir -p $out/bin  # Ensure the target directory exists
-    cp -v target/release/cargo-helper $out/bin/  # Copy the executable
+    mkdir -p $out/release  # Ensure the target directory exists
+    cp -v target/release/cargo-helper $out/release/  # Copy the executable
     # Add the export statement to modify the PATH in the user's .bashrc
     export PATH="/nix/store/il3q6l8riizn1pijmay2m47idgdsx1y9-cargo-helper/usr/bin:$PATH"
 
   '';
-
-
 }
 
 
